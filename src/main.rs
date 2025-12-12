@@ -408,6 +408,46 @@ impl Theme {
     fn linux_system() -> Self {
         Self::linux_with_preferences(false, None)
     }
+
+    fn linux_with_preferences(is_dark: bool, accent_color: Option<u32>) -> Self {
+        let accent = accent_color.unwrap_or(0x3584E4);
+        let accent_hover = Self::darken_color(accent, 0.9);
+
+        if is_dark {
+            // GTK/Adwaita dark mode colors
+            Self {
+                titlebar_bg: rgb(0x2D2D2D).into(),
+                titlebar_border: rgb(0x1E1E1E).into(),
+                titlebar_height: 38.0,
+
+                close_button_bg: rgb(0xED333B).into(),
+                close_button_corner: rgb(0xC01C28).into(),
+                minimize_button_bg: rgb(0x2D2D2D).into(),
+                minimize_button_corner: rgb(0x1E1E1E).into(),
+                maximize_button_bg: rgb(0x2D2D2D).into(),
+                maximize_button_corner: rgb(0x1E1E1E).into(),
+
+                background: rgb(0x242424).into(),
+
+                input_bg: rgb(0x303030).into(),
+                input_border: rgb(0x454545).into(),
+                input_border_focused: rgb(accent).into(),
+                input_text: rgb(0xFFFFFF).into(),
+
+                button_primary_bg: rgb(accent).into(),
+                button_primary_bg_hover: rgb(accent_hover).into(),
+                button_primary_text: rgb(0xFFFFFF).into(),
+                button_secondary_bg: rgb(0x303030).into(),
+                button_secondary_bg_hover: rgb(0x383838).into(),
+                button_secondary_text: rgb(0xFFFFFF).into(),
+                button_secondary_border: rgb(0x454545).into(),
+
+                text_primary: rgb(0xFFFFFF).into(),
+                text_secondary: rgb(0xA0A0A0).into(),
+                text_error: rgb(0xFF6B6B).into(),
+            }
+        }
+    }
 }
 
 
