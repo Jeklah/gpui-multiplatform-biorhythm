@@ -403,6 +403,12 @@ impl Theme {
             .and_then(|s| s.gtk_application_prefer_dark_theme())
             .unwrap_or(false)
     }
+
+    #[cfg(not(target_os = "linux"))]
+    fn linux_system() -> Self {
+        Self::linux_with_preferences(false, None)
+    }
 }
+
 
 
